@@ -5,7 +5,7 @@ RSpec.describe "bets/new", type: :view do
     assign(:bet, Bet.new(
       :name => "MyString",
       :description => "MyString",
-      #:usuario_id => 1,
+      :usuario_id => 3,
       :url_photo => "MyString",
       :category => "MyString",
       :room_status => 1,
@@ -23,23 +23,27 @@ RSpec.describe "bets/new", type: :view do
 
       assert_select "input#bet_name[name=?]", "bet[name]"
 
-      assert_select "input#bet_description[name=?]", "bet[description]"
+      assert_select "textarea#bet_description[name=?]", "bet[description]"
 
-      #assert_select "input#usuario_id[name=?]", "bet[usuario_id]"
+      assert_select "select#usuario_id[name=?]", "usuario_id"
 
       assert_select "input#bet_url_photo[name=?]", "bet[url_photo]"
 
       assert_select "input#bet_category[name=?]", "bet[category]"
 
-      assert_select "input#bet_room_status[name=?]", "bet[room_status]"
+      assert_select "input#bet_room_status_1[name=?]", "bet[room_status]"
+      
+      assert_select "input#bet_room_status_0[name=?]", "bet[room_status]"
 
-      assert_select "input#bet_room_type[name=?]", "bet[room_type]"
+      assert_select "input#bet_room_type_1[name=?]", "bet[room_type]"
+      
+      assert_select "input#bet_room_type_0[name=?]", "bet[room_type]"
 
       assert_select "input#bet_stake[name=?]", "bet[stake]"
 
       assert_select "input#bet_final_answer[name=?]", "bet[final_answer]"
 
-      assert_select "input#bet_answer_type[name=?]", "bet[answer_type]"
+      assert_select "select#answer_type[name=?]", "answer_type"
     end
   end
 end

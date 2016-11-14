@@ -160,10 +160,4 @@ RSpec.describe BetsController, type: :controller do
       expect(response).to redirect_to(bets_url)
     end
   end
-  
-  describe "nova #bet_create" do
-    it "cadastrar nova aposta" do
-      
-    end
-  end
 end

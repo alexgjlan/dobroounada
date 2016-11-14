@@ -1,6 +1,114 @@
-<h1>Editing Bet</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @bet %> |
-<%= link_to 'Back', bets_path %>
+<%= render "layouts/header" %>
+<div class="row">
+	<div class="col-lg-8">
+		<legend>Edição de uma Aposta</legend>
+		<%= form_for(@bet) do |f| %>
+		<% if @bet.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@bet.errors.count, "error") %> prohibited this bet from being saved:</h2>
+			<ul>
+				<% @bet.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title">Dados Gerais da Sala</h2>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<%= f.label :name, "Nome" %><br>
+						<%= f.text_field :name, class: "form-control", :required => true %>
+					</div>
+					<div class="form-group">
+						<%= f.label :description, "Descrição" %><br>
+						<%= f.text_field :description, class: "form-control", :required => true %>
+					</div>
+					<div class="field">
+						<%= f.label :usuario_id, "Dono da Sala" %><br>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class = "glyphicon glyphicon-user"></span>
+							</span>
+							<%= f.number_field :usuario_id %> <!--Melhorar essa parte, já que o combobox igual o do "new" não funcionou-->
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :url_photo, "URL da Imagem de Perfil da Sala" %><br>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-picture"></span>
+							</span>
+							<%= f.url_field :url_photo, class: "form-control" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :category, "Categoria" %><br>
+						<%= f.text_field :category, class: "form-control", :required => true %>
+					</div>
+					<div class="form-group">
+						<%= f.label :stake, "Valor da Aposta (M$)" %><br>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class = "glyphicon glyphicon-usd"></span>
+							</span>
+							<%= f.number_field :stake, class: "form-control" %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title">Manutenção da Sala</h2>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<%= f.label "room_status", "Status da Sala" %><br>
+						<%= f.radio_button :room_status, "1", :checked => true %> 
+						<%= f.label :room_status, "Ativa", :value => "1" %> &nbsp;
+						<%= f.radio_button :room_status, "0" %> 
+						<%= f.label :room_status, "Inativa", :value => "0"%>
+					</div>
+					<div class="form-group">
+						<%= f.label "room_type", "Tipo de Sala" %><br>
+						<%= f.radio_button :room_type, "1", :checked => true %> 
+						<%= f.label :room_type, "Pública", :value => "1" %> &nbsp;
+						<%= f.radio_button :room_type, "0" %> 
+						<%= f.label :room_type, "Privada", :value => "0"%>
+					</div>
+					<div class="form-group">
+						<%= f.label :final_date, "Data limite para apostas" %><br>
+						<%= f.date_field :final_date, :required => true %>
+					</div>
+					<div class="form-group">
+						<%= f.label :final_answer, "Resposta Final" %><br>
+						<%= f.text_field :final_answer, class: "form-control" %>
+					</div>
+					<div class="form-group">
+						<%= f.label :answer_type, "Tipo de Resposta" %><br>
+						<%= f.text_field :answer_type, class: "form-control" %>  <!--Melhorar essa parte, já que o combobox igual o do "new" não funcionou-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<div class="actions">
+				<%= f.submit "Atualizar", class: "btn btn-primary" %>
+			</div>
+			<br>
+			<%= link_to @bet do %>
+			<span class='glyphicon glyphicon-share'></span>&nbsp;Visualizar
+			<% end %> | 
+			<%= link_to bets_path do %>
+			<span class='glyphicon glyphicon-chevron-left'></span>&nbsp;Voltar
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+</div>
+<%= render "layouts/footer" %>

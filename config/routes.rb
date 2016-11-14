@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invites
   resources :guesses
   resources :bets
   get "/apostas/nova" => "bets#nova"

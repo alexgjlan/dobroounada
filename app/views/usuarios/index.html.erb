@@ -1,68 +1,70 @@
 <%= render "layouts/header" %>
 <p id="notice"><%= notice %></p>
 
-<div class="col-lg-9">
-
-<legend>Usuários</legend>
-</div>
-
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nome</th>
-      <th>E-mail</th>
-      <th>Tipo de Login</th>
-      <th>Status</th>
-      <th>Tipo</th>
-      <th>Data ingresso</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @usuarios.each do |usuario| %>
-      <tr>
-        <td><%= usuario.id %></td>
-        <td><%= usuario.name %></td>
-        <td><%= usuario.email %></td>
-        <td><%= if usuario.provider == "email"
-                  "E-mail"
-                else
-                  "Facebook"
-                end
-            %></td>
-        <td><%= if usuario.status
-                  "Ativo"
-                else
-                  "Inativo"
-                end
-            %></td>
-        <td><%= if usuario.user_type == "1"
-                  "Administrador"
-                else
-                  "Apostador"
-                end 
-            %></td>
-        <td><%= usuario.created_at.strftime "%d/%m/%Y" %></td>
-        <td>
-          <%= link_to usuario, title: "Visualizar" do %>
-            <span class='glyphicon glyphicon-share'></span>
-          <% end %>
-        </td>
-        <td>
-            <%= link_to edit_usuario_path(usuario), title: "Editar" do %>
-              <span class='glyphicon glyphicon-edit'></span>
-            <% end %>
-        </td>
-      </tr>
+<div class="row">
+  <div class="col-lg-9">
+    
+    <legend>Usuários</legend>
+  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Tipo de Login</th>
+          <th>Status</th>
+          <th>Tipo</th>
+          <th>Data ingresso</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @usuarios.each do |usuario| %>
+          <tr>
+            <td><%= usuario.id %></td>
+            <td><%= usuario.name %></td>
+            <td><%= usuario.email %></td>
+            <td><%= if usuario.provider == "email"
+                      "E-mail"
+                    else
+                      "Facebook"
+                    end
+                %></td>
+            <td><%= if usuario.status
+                      "Ativo"
+                    else
+                      "Inativo"
+                    end
+                %></td>
+            <td><%= if usuario.user_type == "1"
+                      "Administrador"
+                    else
+                      "Apostador"
+                    end 
+                %></td>
+            <td><%= usuario.created_at.strftime "%d/%m/%Y" %></td>
+            <td>
+              <%= link_to usuario, title: "Visualizar", id: "visu" << usuario.id.to_s do %>
+              <%=   content_tag(:span, '',:class=>'glyphicon glyphicon-share') %>
+              <% end %>
+            </td>
+            <td>
+                <%= link_to edit_usuario_path(usuario), title: "Editar", id: "edit" << usuario.id.to_s do %>
+                  <%=   content_tag(:span, '',:class=>'glyphicon glyphicon-edit') %>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+    <%= link_to new_usuario_path do %>
+      <span class='glyphicon glyphicon-plus-sign'></span>&nbsp;Novo Usuário
     <% end %>
-  </tbody>
-</table>
-
-<%= link_to new_usuario_path do %>
-  <span class='glyphicon glyphicon-plus-sign'></span>&nbsp;Novo Usuário
-<% end %>
+  
+  </div>
+</div>
 
 <%= render "layouts/footer" %>

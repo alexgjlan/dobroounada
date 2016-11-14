@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "bets/edit", type: :view do
   before(:each) do
-    @bet = assign(:bet, Bet.create!(
+    assign(:bet, Bet.new(
       :name => "MyString",
       :description => "MyString",
       :usuario_id => 1,
@@ -16,10 +16,10 @@ RSpec.describe "bets/edit", type: :view do
     ))
   end
 
-  it "renders the edit bet form" do
+  it "renders edit bet form" do
     render
 
-    assert_select "form[action=?][method=?]", bet_path(@bet), "post" do
+    assert_select "form[action=?][method=?]", bets_path, "post" do
 
       assert_select "input#bet_name[name=?]", "bet[name]"
 
@@ -31,9 +31,13 @@ RSpec.describe "bets/edit", type: :view do
 
       assert_select "input#bet_category[name=?]", "bet[category]"
 
-      assert_select "input#bet_room_status[name=?]", "bet[room_status]"
+      assert_select "input#bet_room_status_1[name=?]", "bet[room_status]"
+      
+      assert_select "input#bet_room_status_0[name=?]", "bet[room_status]"
 
-      assert_select "input#bet_room_type[name=?]", "bet[room_type]"
+      assert_select "input#bet_room_type_1[name=?]", "bet[room_type]"
+      
+      assert_select "input#bet_room_type_0[name=?]", "bet[room_type]"
 
       assert_select "input#bet_stake[name=?]", "bet[stake]"
 

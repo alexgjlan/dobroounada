@@ -37,12 +37,12 @@
         
           <div class="form-group">
             <%= f.label :access_token, "Senha" %><br>
-            <%= f.password_field :access_token, class: "form-control", :required => true %>
+            <%= f.password_field :access_token, class: "form-control", :required => true, value: @usuario.access_token %>
           </div>
           
           <div class="form-group">
             <%= f.label "confirmar", "Confirmar Senha" %><br>
-            <%= f.password_field "confirmar", class: "form-control", :required => true %>
+            <%= f.password_field "confirmar", class: "form-control", :required => true, value: @usuario.access_token %>
           </div>
         
         <% end %>

@@ -1,67 +1,72 @@
+<%= render "layouts/header" %>
+
 <p id="notice"><%= notice %></p>
 
-<div class="col-lg-4">
-  
-  <legend>Novo Usuário</legend>
-  
-  <%= form_for(@usuario) do |f| %>
-  
-    <% if @usuario.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
-  
-        <ul>
-        <% @usuario.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+<div class="row">
+  <div class="col-lg-4">
+    
+    <legend>Novo Usuário</legend>
+    
+    <%= form_for(@usuario) do |f| %>
+    
+      <% if @usuario.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+    
+          <ul>
+          <% @usuario.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="form-group">
+        <%= f.label :name, "Nome" %><br>
+        <%= f.text_field :name, class: "form-control", :required => true %>
       </div>
+      
+      <div class="form-group">
+        <%= f.label :email, "E-mail" %><br>
+        <div class="input-group">
+          <span class="input-group-addon">@</span>
+          <%= f.text_field :email, type: "email", class: "form-control", :required => true %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :access_token, "Senha" %><br>
+        <%= f.password_field :access_token, class: "form-control", :required => true %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "confirmar", "Confirmar Senha" %><br>
+        <%= f.password_field "confirmar", class: "form-control", :required => true %>
+      </div>
+      
+      <%= f.hidden_field :provider, value: "email" %>
+      <%= f.hidden_field :status, value: "true" %>
+      
+      <div class="form-group">
+          <%= f.label "user_type", "Tipo de Usuário" %><br>
+            <%= f.radio_button :user_type, "1", :checked => true %> 
+            <%= f.label :user_type, "Administrador", :value => "1" %> &nbsp;
+            <%= f.radio_button :user_type, "2" %> 
+            <%= f.label :user_type, "Apostador", :value => "2"%>
+      </div>
+      
+      <div class="actions">
+        <%= f.submit "Cadastrar", class: "btn btn-primary" %>
+      </div>
+      
     <% end %>
   
-    <div class="form-group">
-      <%= f.label :name, "Nome" %><br>
-      <%= f.text_field :name, class: "form-control", :required => true %>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :email, "E-mail" %><br>
-      <div class="input-group">
-        <span class="input-group-addon">@</span>
-        <%= f.text_field :email, type: "email", class: "form-control", :required => true %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :access_token, "Senha" %><br>
-      <%= f.password_field :access_token, class: "form-control", :required => true %>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label "confirmar", "Confirmar Senha" %><br>
-      <%= f.password_field "confirmar", class: "form-control", :required => true %>
-    </div>
-    
-    <%= f.hidden_field :provider, value: "email" %>
-    <%= f.hidden_field :status, value: "true" %>
-    
-    <div class="form-group">
-        <%= f.label "user_type", "Tipo de Usuário" %><br>
-          <%= f.radio_button :user_type, "1", :checked => true %> 
-          <%= f.label :user_type, "Administrador", :value => "1" %> &nbsp;
-          <%= f.radio_button :user_type, "2" %> 
-          <%= f.label :user_type, "Apostador", :value => "2"%>
-    </div>
-    
-    <div class="actions">
-      <%= f.submit "Cadastrar", class: "btn btn-primary" %>
-    </div>
-    
-  <% end %>
-
-    <br>
-    
-    <%= link_to usuarios_path do %>
-      <span class='glyphicon glyphicon-chevron-left'></span>&nbsp;Voltar
-    <% end %>
-
+      <br>
+      
+      <%= link_to usuarios_path do %>
+        <span class='glyphicon glyphicon-chevron-left'></span>&nbsp;Voltar
+      <% end %>
+  
+  </div>
 </div>
+<%= render "layouts/footer" %>

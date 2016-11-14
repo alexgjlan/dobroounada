@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id bet:</strong>
+  <%= @invite.id_bet %>
+</p>
+
+<p>
+  <strong>Id user:</strong>
+  <%= @invite.id_user %>
+</p>
+
+<%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back', invites_path %>

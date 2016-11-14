@@ -5,9 +5,9 @@
 root = exports ? this
 
 root.verificacaoLogin = () ->
-	linkAtual = window.location.href
-	indicacaoFalhaLogin = linkAtual.indexOf "notice=Falha+ao+logar", 0
-	textoExibixao = '<div class="alert"><span class="closebtn" onclick="this.parentElement.style.display=' + "'none'" + ';">&times;</span><strong>Erro de acesso!</strong> Login e/ou senha incorretos</div>'
-	if indicacaoFalhaLogin >= 0
-		document.write(textoExibixao)
-	return
+linkAtual = window.location.href
+indicacaoFalhaLogin = linkAtual.indexOf "notice=Falha+ao+logar", 0
+textoExibixao = '<div class="alert"><span class="closebtn" onclick="this.parentElement.style.display=' + "'none'" + ';">&times;</span><strong>Erro de acesso!</strong> Login e/ou senha incorretos</div>'
+if indicacaoFalhaLogin >= 0
+	document.write(textoExibixao)
+return

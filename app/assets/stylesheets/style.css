@@ -459,7 +459,7 @@ hr {
 .actions {
 	width: 30%;
  font-family: "Pier Sans";
- float: right;
+ /*float: right;*/
  font-size: 16px;
  opacity: 1;
 }
@@ -493,6 +493,10 @@ hr {
 }
 .field{
  margin-left:auto ;
+}
+.conteudo{
+ padding-left: 15px;
+ padding-right: 15px;
 }
 
 /* --------------- Footer Padrao ---------------- */
