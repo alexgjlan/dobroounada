@@ -1,7 +1,21 @@
+=begin 
+
 require 'rails_helper'
 
 RSpec.describe "bets/show", type: :view do
   before(:each) do
+    @user = assign(:usuarios, Usuario.create!(
+        :id => 2,
+        :name => "Leo",
+        :email => "email@example.com", #modifiquei
+        :access_token => "Access Token",
+        :uid => "Uid",
+        :photo_url => "Photo Url",
+        :provider => "email",
+        :status => false,
+        :reason => "Reason",
+        :user_type => "2"
+      ))
     @bet = assign(:bet, Bet.create!(
       :name => "Name",
       :description => "Description",
@@ -20,7 +34,7 @@ RSpec.describe "bets/show", type: :view do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Description/)
-    expect(rendered).to match(/2/)
+    expect(rendered).to match(/Leo/)
     expect(rendered).to match(/Url Photo/)
     expect(rendered).to match(/Category/)
     expect(rendered).to match(/3/)
@@ -30,3 +44,5 @@ RSpec.describe "bets/show", type: :view do
     expect(rendered).to match(/Answer Type/)
   end
 end
+
+=end

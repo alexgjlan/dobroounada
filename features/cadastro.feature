@@ -6,7 +6,7 @@ Feature: Sign up for DobroOuNada
 Scenario: Sign up HappyWay
     Given I am on the sign up page
     When I sign up with "Algum nome" as name, "abc@hotmail.com" as e-mail and "123" for password
-    Then I should see "você é o usuário"
+    Then I should see "Seja Bem-vindo"
     
 Scenario: Sign up SadWay invalid email
     Given I am on the sign up page

@@ -1,0 +1,51 @@
+<%= render "layouts/header" %>
+<div class="col-lg-12"><h2 style="text-align:center">Bem Vindo a Sala: <%= @bet.name %> </h2>
+    <div class="panel panel-default" style="margin-bottom: 20px; float:left;width:45%;overflow:hidden; ">
+        <div class="panel-heading"><h2 class="panel-title">Guesses</h2></div>
+        <div class="panel-body" >
+            <table class="table table-hover" >
+                 <table>
+                  <thead>
+                    <tr>
+                      <th>Bet </th>
+                      <th>Usuario</th>
+                      <th>Won status</th>
+                      <th>Guess</th>
+                      <th>Status</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
+            
+                  <tbody>
+                    <% Guess.where(:bet_id => @bet.id).find_each do |guess| %>
+                      <tr>
+                        <td><%= guess.bet_id %></td>
+                        <td><%= guess.usuario_id %></td>
+                        <td><%= guess.won_status %></td>
+                        <td><%= guess.guess_text %></td>
+                        <td><%= guess.guess_status %></td>
+                        
+                      </tr>
+                    <% end %>
+                  </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel  panel-primary" style="margin-left:10%;float:left;width:45%;overflow:hidden; ">
+        <div class="panel-heading"style="background-color: baby blue;"><h2 class="panel-title">Participantes</h2></div>
+        <div class="panel-body" >
+          <p> Olá, você é o usuário numero <%= session[:user_id] %>.</p>
+        </div>
+    </div>
+  
+</div>
+
+<br><br>
+    
+<button type="button" class="btn btn-default" style= "margin-top:20px;margin-left: 10px;">
+   <%= link_to "Apostar",controller: 'guesses', action: 'new', :bet_id => @bet.id, :usuario_id => session[:user_id]%>
+</button> 
+<button type="button" class="btn btn-default" style= "margin-top:20px;margin-left: 10px;">
+   <%= link_to "Convidar", novo_invite_path(@bet.id) %>
+</button> 
+<%= render "layouts/footer" %>

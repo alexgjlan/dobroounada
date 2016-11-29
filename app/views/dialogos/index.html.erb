@@ -1,0 +1,31 @@
+<div class="ui segment">
+  <h3>Mensagens</h3>
+
+  <div class="ui list">
+    <div class="item">
+      <% @dialogos.each do |dialogo| %>
+        <% if dialogo.sender_id == current_user.id || conversation.recipient_id == Usuario.find(session[:user_id]) %>
+          <% if dialogo.sender_id == Usuario.find(session[:user_idd]) %>
+            <% recipient = Usuario.find(dialogo.recipient_id) %>
+          <% else %>
+            <% recipient = Usuario.find(dialogo.sender_id) %>
+          <% end %>
+          <%= link_to recipient.name , dialogo_postagems_path(dialogo)%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class=”ui segment”>
+   <h3>Usuários</h3>
+    <div class=”ui list”>
+     <% @usuarios.each do |usuario| %>
+      <% if usuario.uid != Usuario.find(session[:user_id]) %>
+       <div class=”item”>
+         <%= usuario.name %> <%= usuario.email %> <%= link_to "Enviar mensagem", dialogos_path(sender_id: Usuario.find(session[:user_id]), recipient_id: usuario.id), method: "post"%>
+       </div>
+    <% end %>
+   <% end %>
+   </div>
+  </div>
+</div>

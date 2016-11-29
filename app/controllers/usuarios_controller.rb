@@ -5,8 +5,14 @@ class UsuariosController < ApplicationController
   # GET /usuarios.json
   def index
     @usuarios = Usuario.all
+    
+    if params[:search]
+      @usuarios = Usuario.search(params[:search])
+    else
+      @usuarios = Usuario.all.order('created_at ASC')
+    end
   end
-
+  
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show

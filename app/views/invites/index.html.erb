@@ -1,29 +1,48 @@
+<%= render "layouts/header" %>
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Invites</h1>
+<div class="row">
+  <div class="col-lg-10">
 
-<table>
-  <thead>
-    <tr>
-      <th>Id bet</th>
-      <th>Id user</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <legend>Apostas que fui convidado a participar</legend>
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nome da Sala</th>
+          <th>Descrição</th>
+          <th>Dono da Sala</th>
+          <th>Categoria</th>
+          <th>Data limite para apostas</th>
+          <th></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @invites.each do |invite| %>
+          <tr>
+            <% aposta = Bet.find(invite.id_bet) %>
+            <% dono = Usuario.find(aposta.usuario_id) %>
+            <td><%= aposta.name %></td>
+            <td><%= aposta.description %></td>
+            <td><%= dono.name %></td>
+            <td><%= aposta.category %></td>
+            <td>
+                <% if aposta.final_date != nil %> 
+                  <%= aposta.final_date.strftime "%d/%m/%Y" %>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to controller: "bets", action:'inside_bet', :id => invite.id_bet do %>
+                  <span class='glyphicon glyphicon-log-in'></span>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
 
-  <tbody>
-    <% @invites.each do |invite| %>
-      <tr>
-        <td><%= invite.id_bet %></td>
-        <td><%= invite.id_user %></td>
-        <td><%= link_to 'Show', invite %></td>
-        <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
-        <td><%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Invite', new_invite_path %>
+<%= render "layouts/footer" %>

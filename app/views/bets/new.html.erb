@@ -43,7 +43,8 @@
                 <span class="input-group-addon">
                   <span class = "glyphicon glyphicon-user"></span>
                 </span>
-                <%= select_tag :usuario_id, options_for_select(Usuario.all.collect{|u| [u.name, u.id]}), include_blank: true, class: "form-control", :required => true %>
+                <% @usuarios = Usuario.all %>
+                <%= f.select :usuario_id, @usuarios.collect{ |usuario| [usuario.name, usuario.id] }, {}, {:class => "form-control", :required => true} %>
                 
               </div>
             </div>
@@ -114,7 +115,7 @@
             
             <div class="form-group">
               <%= f.label :answer_type, "Tipo de Resposta" %><br>
-              <%= select_tag :answer_type, options_for_select([["Texto","0"], ["Número","1"], ["Data","2"]]), include_blank: true, class: "form-control", :required => true %>
+              <%= f.select :answer_type, [["Texto","0"], ["Número","1"], ["Data","2"]], {}, {class: "form-control", :required => true} %>
             </div>
             
           </div>

@@ -44,11 +44,25 @@ hr {
  width: 33.33%;
  height: 100%;
 }
+
+.card-bloco-painel {
+ float: left;
+ width: 50%;
+ height: 100%;
+}
+
 .card-bloco-home-center {
  float: left;
  width: 100%;
  height: 100%;
 }
+
+.card-bloco-painel-center {
+ float: left;
+ width: 100%;
+ height: 50%;
+}
+
 .metade-home {
  height: 100%;
  width: 50%;
@@ -355,8 +369,6 @@ hr {
 	margin: none;
 	
 	position: absolute;
-	
-	background-color: #FFFFFF;
 	color: #666666;
 	
 	font-family: 'bariol'
@@ -501,12 +513,13 @@ hr {
 
 /* --------------- Footer Padrao ---------------- */
 .caixa-footer{
- padding-top: 10px;
- padding-bottom: 10px;
- margin-top: 60px;
- color: #99979c;
-  text-align: center;
- background-color: #d8d8d8;
+	height: 150px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 60px;
+	color: #99979c;
+	text-align: center;
+	background-color: #d8d8d8;
 
 }
 .container {
@@ -519,7 +532,7 @@ hr {
     padding-left: 0;
     margin-bottom: 10px;
 }
-ul{
+.ul-footer{
   margin-top: 0;
   margin-bottom: 6px;
 }

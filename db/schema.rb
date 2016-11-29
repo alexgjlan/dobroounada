@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114002919) do
+ActiveRecord::Schema.define(version: 20161126024421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20161114002919) do
   create_table "bets", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "ownerId"
     t.string   "url_photo"
     t.string   "category"
     t.integer  "room_status"
@@ -46,6 +45,13 @@ ActiveRecord::Schema.define(version: 20161114002919) do
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",    :index=>{:name=>"index_conversations_on_sender_id", :using=>:btree}
     t.integer  "recipient_id", :index=>{:name=>"index_conversations_on_recipient_id", :using=>:btree}
+    t.datetime "created_at",   :null=>false
+    t.datetime "updated_at",   :null=>false
+  end
+
+  create_table "dialogos", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
     t.datetime "created_at",   :null=>false
     t.datetime "updated_at",   :null=>false
   end
@@ -67,12 +73,28 @@ ActiveRecord::Schema.define(version: 20161114002919) do
     t.datetime "updated_at", :null=>false
   end
 
+  create_table "mensagems", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "usuario_id", :index=>{:name=>"index_mensagems_on_usuario_id", :using=>:btree}
+    t.datetime "created_at", :null=>false
+    t.datetime "updated_at", :null=>false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body"
-    t.datetime "created_at",      :null=>false
-    t.datetime "updated_at",      :null=>false
+    t.integer  "usuario_id", :index=>{:name=>"index_messages_on_usuario_id", :using=>:btree}
+    t.datetime "created_at", :null=>false
+    t.datetime "updated_at", :null=>false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text     "body"
     t.integer  "conversation_id"
-    t.integer  "usuario_uid"
+    t.integer  "user_id"
+    t.boolean  "read"
+    t.datetime "created_at",      :null=>false
+    t.datetime "update_at"
+    t.datetime "updated_at",      :null=>false
   end
 
   create_table "salas", force: :cascade do |t|
@@ -111,5 +133,6 @@ ActiveRecord::Schema.define(version: 20161114002919) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "bets", "usuarios", column: "ownerId"
+  add_foreign_key "mensagems", "usuarios"
+  add_foreign_key "messages", "usuarios"
 end

@@ -1,5 +1,60 @@
-<h1>New Guess</h1>
+<%= render "layouts/header" %>
+<div class="row">
+    <div class="col-lg-4">
+      
+      <legend style="text-align:center">Nova Apostas</legend>
+        <div class="panel  panel-primary" style="margin:auto;width:40%;overflow:hidden; ">
+        <div class="panel-heading"style="background-color: baby blue;"><h2 class="panel-title">Participantes</h2></div>
+        <div class="panel-body", style="margin:auto;width:45%;" >
+            <!-- queria colocar = Usuario.find(session[:user_id]).name %>, o rakepec me impede-->
+          <p> Olá, por favor insira seu palpite.</p>
+            <%= form_for(@guess) do |f| %>
+              <% if @guess.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@guess.errors.count, "error") %> prohibited this guess from being saved:</h2>
+            
+                  <ul>
+                  <% @guess.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            
+              <div class="field">
+                <%= f.label :bet_id %><br>
+                <%= f.number_field :bet_id , :value => params[:bet_id], :readonly =>true  %>
+              </div>
+              <div class="field">
+                <%= f.label :usuario_id %><br>
+                <%= f.number_field :usuario_id , :value => params[:usuario_id], :readonly =>true  %>
+              </div>
+              <div class="field">
+                <%= f.label :won_status %><br>
+                <%= f.check_box :won_status, :value => false, :readonly =>true %>
+              </div>
+              <div class="field">
+                <%= f.label :guess_text %><br>
+                <%= f.text_field :guess_text %>
+              </div>
+              
+              <div class="field">
+                <%= f.label :guess_status %><br>
+                <%= f.number_field :guess_status %>
+              </div>
+              
+              <div class="actions" style = "margin-top: 20px;">
+                <%= f.submit "Palpitar" %>
+              </div>
+            <% end %>
+            
+            </div>
+        </div>
+    </div>
+</div>
+<div style = "maginl-left: 300px"> <%= link_to guesses_path do %>
+		<span class='glyphicon glyphicon-chevron-left'></span>&nbsp;Voltar
+		<% end %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', guesses_path %>
+<%= render "layouts/footer" %>

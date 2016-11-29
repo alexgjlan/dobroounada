@@ -1,0 +1,23 @@
+<%= render "layouts/header" %>
+
+    <legend>Convidar Amigos</legend>
+        Digite o nome do convidado na caixa de busca para pesquisar. Clique em "Convidar" para efetuar o convite<br>
+        <div class="row">
+            <div class="col-lg-6">
+                
+                <%= form_tag usuarios_srch_path, :method => 'get', :id => "search_form", :remote => true do %>
+                    <%= text_field_tag :search, params[:search], class: "form-control" %>
+                    <%= hidden_field_tag :id_bet, params[:id_bet] %>
+                <% end %>
+                
+                <br>
+                
+                <div id="usuarios">
+                    <%= render partial: 'preview', locals: {usuarios: @usuarios, id_aposta: params[:id_bet], search: ""} %>
+                </div>
+            
+            </div>
+    </div>
+    <%= link_to 'Back', invites_path %>
+
+<%= render "layouts/footer" %>

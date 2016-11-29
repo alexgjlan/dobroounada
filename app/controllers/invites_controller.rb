@@ -4,17 +4,58 @@ class InvitesController < ApplicationController
   # GET /invites
   # GET /invites.json
   def index
-    @invites = Invite.all
+    @invites = Invite.where(id_user: session[:user_id])
   end
 
   # GET /invites/1
   # GET /invites/1.json
   def show
   end
+  
+  # Campo de Busca
+  def usuarios_srch
+    @selected = Usuario.all
+    @bets = Bet.find(params[:id_bet])
+    @search = params[:search]
+    
+    if params[:search]
+      @selected = Usuario.search(params[:search])
+      
+      if params[:search]==""
+        @selected = nil
+      end
+    else
+      @selected = nil
+    end
+    
+    respond_to do |format|
+      format.js
+    end
+  end
 
   # GET /invites/new
   def new
     @invite = Invite.new
+    @usuarios = nil
+  end
+  
+  # GET /invites/1/novo
+  def novo
+    @usuarios = nil
+  end
+  
+  #GET /invites/inserir
+  def inserir
+    convite = Invite.new
+    
+    convite.id_bet = params[:id_bet]
+    convite.id_user = params[:id_user]
+    
+    convite.save
+    
+    #Dar reload nos contatos
+    redirect_to usuarios_srch_path(:search => params[:search], :id_bet => params[:id_bet])
+    
   end
 
   # GET /invites/1/edit

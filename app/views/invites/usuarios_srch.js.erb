@@ -1,0 +1,1 @@
+$("#usuarios").html("<%= escape_javascript(render partial: 'usuarios_list', locals: { usuarios: @selected, id_aposta: @bets.id, search: @search } ) %>");

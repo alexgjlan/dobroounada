@@ -25,7 +25,7 @@ RSpec.describe "bets/new", type: :view do
 
       assert_select "textarea#bet_description[name=?]", "bet[description]"
 
-      assert_select "select#usuario_id[name=?]", "usuario_id"
+      assert_select "select#bet_usuario_id[name=?]", "bet[usuario_id]"
 
       assert_select "input#bet_url_photo[name=?]", "bet[url_photo]"
 
@@ -43,7 +43,7 @@ RSpec.describe "bets/new", type: :view do
 
       assert_select "input#bet_final_answer[name=?]", "bet[final_answer]"
 
-      assert_select "select#answer_type[name=?]", "answer_type"
+      assert_select "select#bet_answer_type[name=?]", "bet[answer_type]"
     end
   end
 end

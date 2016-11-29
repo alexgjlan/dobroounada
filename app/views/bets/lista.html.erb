@@ -1,0 +1,38 @@
+<%= render "layouts/header" %>
+
+<legend>Minhas apostas</legend>
+
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nome da Sala</th>
+          <th>Descrição</th>
+          <th>Tipo de Sala</th>
+          <th>Data limite para apostas</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    <tbody>
+        <% @bets.each do |bet| %>
+          <tr>
+            <td><%= bet.name %></td>
+            <td><%= bet.description.to_s.force_encoding("UTF-8") %></td>
+            <td>
+              <% if bet.room_type == 0 %>
+                Privada
+              <% else %>
+                Pública
+              <% end %>
+            </td>
+            <td><%= bet.final_date %></td>
+            <td>
+              <%= link_to bet, title: "Visualizar" do %>
+                <span class='glyphicon glyphicon-eye-open'></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= render "layouts/footer" %>

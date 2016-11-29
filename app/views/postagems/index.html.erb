@@ -1,0 +1,33 @@
+<% if @over_ten %>
+   <%= link_to 'Show Previous', '?m=all' %>
+<% end %>
+
+<div class="ui segment">
+  <% @postagems.each do |postagem| %>
+    <% if postagem.body %>
+      <% usuario = Usuario.find(postagem.usuario_id) %>
+      <div class="item">
+        <div class="content">
+          <div class="header"><strong><%= usuario.name %></strong> <%= postagem.postagem_time %></div>
+          <div class="list">
+            <div class="item">
+              <i class="right triangle icon"></i>
+              <%= postagem.body %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_for [@dialogo, @postagem], html: {class: "ui reply form"} do |f| %>
+  <div class="field">
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+    <%= f.text_field :usuario_id, value: Usuario.find(session[:user_id]), type: "hidden"  %>
+  <div>
+    <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
+  </div>
+
+<% end %>

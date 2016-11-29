@@ -6,4 +6,5 @@ class Bet < ActiveRecord::Base
     #os testes de tipo de campo sao garantidos pela gema
     
     has_many :guesses
+    has_many :invites
 end

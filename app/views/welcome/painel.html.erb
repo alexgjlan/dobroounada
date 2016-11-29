@@ -1,6 +1,89 @@
-<p> Olá, você é o usuário numero <%= session[:user_id] %>.</p>
+﻿﻿<p id="notice"><%= notice %></p>
+<div class="full-width full-height" >
+   <div class="full-width full-height" id="banner-bloco-home">
+    <div class="full-width full-height" id="cor-preto-bloco-home">
+     <div class="full-width full-height" id="gradient-white">
+     
+      <div class="card-bloco-home-center">
+       <div class="bloco-box-cadastro">
+        <p class="titulo-box-bloco-cadastro">Seja Bem-vindo!</p>
+        <br>
+        
+        <div class="bloco-home" id="conheca">
+			<div class="card-bloco-painel">
+				<div class="etapa-bloco-home">
+					<div class="imagem-etapa-bloco-home" id="etapa-1">
+					</div>
+					<br/>
+					<p class="titulo-etapa-bloco-home">Perfil</p>
+					<br/>
+					<p class="conteudo-etapa-bloco-home">
+					   <% if session[:user_id] != nil %>
+					   
+					   	<% @usuarios.each do |usuario| %>
+					   		<center>
+					   		<p><strong>Nome:</strong><%= usuario.name %></p>					   		
+							<p><strong>E-mail:</strong><%= usuario.email %>
+							<p><strong>Tipo de Acesso:</strong>
+								<% if usuario.provider == "email" %>
+									E-mail
+								<% else %>
+									Facebook
+								<% end %>
+							</p>
+							<p><strong>Data de ingresso:</strong><% usuario.created_at %></p>
+							<p><strong>Última alteração:</strong><% usuario.updated_at %></p>
+							<p>Editar perfil</p>
+					   		<p>Lista de jogadores</p>
+					   		<p><%= link_to "Sair", controller: 'sessions', action: 'destroy' %></p>
+							</center>
+					   	<%end%>
+					   	<%end%>
+					   	
+					   	
 
-<br /><br />
-<%= link_to "Nova aposta", controller: 'bets', action: 'nova' %>
-<br /><br />
-<%= link_to "logout", controller: 'sessions', action: 'destroy' %>
+					</p>
+				</div>
+			</div>
+			
+			<div class="card-bloco-painel">
+				<div class="etapa-bloco-home">
+					<div class="imagem-etapa-bloco-home" id="etapa-2">
+					</div>
+					<br/>
+					<p class="titulo-etapa-bloco-home">Apostas</p>
+					<br/>
+					<p class="conteudo-etapa-bloco-home">
+					    
+					   <br><%= link_to "Nova aposta", controller: 'bets', action: 'nova' %>
+					   <br><%= link_to "Minhas apostas", controller: 'bets', action: 'lista' %>
+					   <br>Apostas que estou participando
+					   <br><%= link_to "Apostas que fui convidado a participar", controller: 'invites', action: 'index' %>
+					   <br>Tutorial
+					    
+					</p>
+				</div>
+			</div>
+			
+			
+		
+		</div>
+        
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <%= render "layouts/footer" %>
+
+
+
+
+
+
+
+
+
+
+

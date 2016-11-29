@@ -1,5 +1,5 @@
 class BetsController < ApplicationController
-  before_action :set_bet, only: [:show, :edit, :update, :destroy]
+  before_action :set_bet, only: [:show, :edit, :update, :destroy, :inside_bet]
 
   # GET /bets
   # GET /bets.json
@@ -41,6 +41,10 @@ class BetsController < ApplicationController
   	@bet = Bet.new
   end
   
+  def inside_bet
+    #render:inside_bet 
+  end
+  
   
   def bet_create
   	@bet = Bet.new(bet_params)
@@ -50,7 +54,7 @@ class BetsController < ApplicationController
     
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to controller: 'welcome', action: 'painel', notice: 'bet was successfully created.' }
+        format.html { render:inside_bet }
         #format.json { render :show, status: :created, location: @usuario }
       else
         format.html { render:nova }
@@ -59,6 +63,13 @@ class BetsController < ApplicationController
     end
   end
   
+  def lista
+    myBets
+  end
+  
+  def myBets
+    @bets = Bet.where(usuario_id:  session[:user_id])
+  end
   
 
   # PATCH/PUT /bets/1

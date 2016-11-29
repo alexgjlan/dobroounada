@@ -3,12 +3,10 @@ Feature: Sign in the system
   As a user of the website
   I want to be able to login
   
-  
-  
   Scenario: Login HappyWay
     Given I am on the homepage
     When I log in with "ctccaio@hotmail.com" username and "123456" password
-    Then I should see "Olá, você é o usuário numero"
+    Then I should see "Seja Bem-vindo"
     
   
   Scenario: Login SadWay UserIncorrect

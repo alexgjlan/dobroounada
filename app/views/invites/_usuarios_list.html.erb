@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title"><span class="glyphicon glyphicon-list"></span>&nbsp;Resultados da Busca</h2>
+    </div>
+    <div class="panel-body">
+        <% if usuarios != nil and usuarios.count >= 1 %>
+            <table class="table table-hover">
+              <% usuarios.each do |f| %>
+                <tr>
+                  <td>
+                    <%= f.name %>
+                  </td>
+                  <td class="text-right">
+                    <% @convite = Invite.where("id_bet = ? AND id_user = ?", id_aposta, f.id) %>
+                    <% if @convite.count >= 1 %>
+                        <span class="glyphicon glyphicon-ok"></span>&nbsp;Convidado
+                    <% else %>
+                        <%= link_to inserir_path(:search => search, :id_bet => id_aposta, :id_user => f.id), :remote => true do%>
+                            <span class="glyphicon glyphicon-envelope"></span>&nbsp;Convidar
+                        <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+        <% else %>
+            <p>Sua busca não retornou resultados...</p>
+        <% end %>
+    </div>
+</div>

@@ -25,7 +25,7 @@
 					</div>
 					<div class="form-group">
 						<%= f.label :description, "Descrição" %><br>
-						<%= f.text_field :description, class: "form-control", :required => true %>
+						<%= f.text_area :description, class: "form-control", :required => true %>
 					</div>
 					<div class="field">
 						<%= f.label :usuario_id, "Dono da Sala" %><br>
@@ -33,7 +33,8 @@
 							<span class="input-group-addon">
 							<span class = "glyphicon glyphicon-user"></span>
 							</span>
-							<%= f.number_field :usuario_id %> <!--Melhorar essa parte, já que o combobox igual o do "new" não funcionou-->
+							<% @usuarios = Usuario.all %>
+                			<%= f.select :usuario_id, @usuarios.collect{ |usuario| [usuario.name, usuario.id] }, {}, {:class => "form-control", :required => true} %>
 						</div>
 					</div>
 					<div class="form-group">
@@ -91,7 +92,7 @@
 					</div>
 					<div class="form-group">
 						<%= f.label :answer_type, "Tipo de Resposta" %><br>
-						<%= f.text_field :answer_type, class: "form-control" %>  <!--Melhorar essa parte, já que o combobox igual o do "new" não funcionou-->
+						<%= f.select :answer_type, [["Texto","0"], ["Número","1"], ["Data","2"]], {}, {class: "form-control", :required => true} %>
 					</div>
 				</div>
 			</div>
