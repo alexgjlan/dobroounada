@@ -59,8 +59,39 @@
 					   <br><%= link_to "Minhas apostas", controller: 'bets', action: 'lista' %>
 					   <br>Apostas que estou participando
 					   <br><%= link_to "Apostas que fui convidado a participar", controller: 'invites', action: 'index' %>
-					   <br>Tutorial
-					    
+					  
+					   
+					   <!-- Button trigger modal -->
+					   <br><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" color="red">
+  					  	 Tutorial
+					   </button>
+
+					   <!-- Modal -->
+					   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ 						 <div class="modal-dialog" role="document">
+    						<div class="modal-content">
+     						 <div class="modal-header">
+       							 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        						 <h4 class="modal-title" id="myModalLabel">Tutorial Relâmpago</h4>
+     						 </div>
+     						 <div class="modal-body">
+        						<h1>É simples. É rápido.</h1></p>
+        						<center>
+        						<br>Passo 1: Registre-se ou faça Login
+								<br>Passo 2: Entre ou crie uma sala
+								<br>Passo 3: Comece a jogar!</p>
+								</center>
+      						 </div>
+      						<div class="modal-footer">
+        						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       						
+      						</div>
+    					</div>
+  					</div>
+				</div>
+					   
+					   
+
 					</p>
 				</div>
 			</div>
